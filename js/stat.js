@@ -19,16 +19,6 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, cloudParams.WIDTH, cloudParams.HEIGHT);
 };
 
-var getMaxElement = function (arr) {
-  var maxElement = arr[0];
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i] > maxElement) {
-      maxElement = arr[i];
-    }
-  }
-  return maxElement;
-};
-
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, cloudParams.X_POSITION + cloudParams.SHADOW_GAP, cloudParams.Y_POSITION + cloudParams.SHADOW_GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, cloudParams.X_POSITION, cloudParams.Y_POSITION, '#fff');
@@ -38,7 +28,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', cloudParams.X_POSITION + chartParams.COLUMN_GAP, cloudParams.Y_POSITION + chartParams.COLUMN_GAP / 2);
   ctx.fillText('Cписок результатов:', cloudParams.X_POSITION + chartParams.COLUMN_GAP, cloudParams.Y_POSITION + chartParams.COLUMN_GAP);
 
-  var maxTime = getMaxElement(times);
+  var maxTime = Math.max(...times);
 
   for (var i = 0; i < names.length; i++) {
     var saturationPersntage = Math.floor(Math.random() * 100);
