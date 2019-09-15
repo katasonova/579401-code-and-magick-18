@@ -50,8 +50,8 @@ window.renderStatistics = function (ctx, names, times) {
     }
   }
 
-  for (var i = 0; i < times.length; i++) {
+  for (var j = 0; j < times.length; j++) {
     ctx.fillStyle = '#000';
-    ctx.fillText(Math.floor(times[i]), CLOUD_X + COLUMN_GAP + (COLUMN_GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - ((barHeight * times[i]) / maxTime) - CLOUD_Y * 4);
+    ctx.fillText(Math.floor(times[j]), CLOUD_X + COLUMN_GAP + (COLUMN_GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - ((barHeight * times[i]) / maxTime) - CLOUD_Y * 4);
   }
 };
