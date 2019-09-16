@@ -39,8 +39,8 @@ var renderText = function (ctx, x, y, text, font, color, lineHeight) {
   ctx.fillStyle = color;
   for (var i = 0; i < lines.length; i++) {
     ctx.fillText(lines[i], x, y + lineHeight * i);
-  };
-}
+  }
+};
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, cloudParams.X_POSITION + cloudParams.SHADOW_GAP, cloudParams.Y_POSITION + cloudParams.SHADOW_GAP, 'rgba(0, 0, 0, 0.7)');
