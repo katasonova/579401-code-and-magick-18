@@ -48,12 +48,12 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillRect(cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * i, cloudParams.HEIGHT - cloudParams.Y_POSITION * 3, chartParams.COLUMN_WIDTH, -((chartParams.COLUMN_HEIGHT * times[i]) / maxTime));
   }
 
-  var renderResults = function (ctx, color, times, j) {
+  var renderResults = function (ctx, color, time, j) {
     ctx.fillStyle = color;
-    ctx.fillText(Math.floor(times[j]), cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * j, cloudParams.HEIGHT - ((chartParams.COLUMN_HEIGHT * times[j]) / maxTime) - cloudParams.Y_POSITION * 4);
+    ctx.fillText(Math.floor(time), cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * j, cloudParams.HEIGHT - ((chartParams.COLUMN_HEIGHT * time) / maxTime) - cloudParams.Y_POSITION * 4);
   };
 
   for (var j = 0; j < times.length; j++) {
-    renderResults(ctx, '#000', times, j);
+    renderResults(ctx, '#000', times[j], j);
   }
 };
