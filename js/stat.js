@@ -48,7 +48,7 @@ var renderResults = function (ctx, color, number, index, maxTime) {
 };
 
 var getHSLColor = function () {
-  return 'hsl(240, ' + Math.floor(Math.random() * 100) + '%, 50%)'
+  return 'hsl(240, ' + Math.floor(Math.random() * 100) + '%, 50%)';
 };
 
 window.renderStatistics = function (ctx, names, times) {
@@ -60,7 +60,6 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
-    var saturationPersntage = Math.floor(Math.random() * 100);
     ctx.fillStyle = '#000';
     ctx.fillText(names[i], cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * i, cloudParams.HEIGHT - cloudParams.Y_POSITION);
 
