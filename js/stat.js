@@ -37,12 +37,10 @@ window.renderStatistics = function (ctx, names, times) {
 
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      ctx.fillRect(cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * i, cloudParams.HEIGHT - cloudParams.Y_POSITION * 3, chartParams.COLUMN_WIDTH, -((chartParams.COLUMN_HEIGHT * times[i]) / maxTime));
     } else {
-    // ctx.fillStyle = `hsl(240, ${Math.floor(Math.random() * 100)}%, 50%)`;
       ctx.fillStyle = 'hsl(240, ' + saturationPersntage + '%, 50%)';
-      ctx.fillRect(cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * i, cloudParams.HEIGHT - cloudParams.Y_POSITION * 3, chartParams.COLUMN_WIDTH, -((chartParams.COLUMN_HEIGHT * times[i]) / maxTime));
     }
+    ctx.fillRect(cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * i, cloudParams.HEIGHT - cloudParams.Y_POSITION * 3, chartParams.COLUMN_WIDTH, -((chartParams.COLUMN_HEIGHT * times[i]) / maxTime));
   }
 
   for (var j = 0; j < times.length; j++) {
