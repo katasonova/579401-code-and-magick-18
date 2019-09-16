@@ -19,6 +19,11 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, cloudParams.WIDTH, cloudParams.HEIGHT);
 };
 
+var getMaxElement = function (arr) {
+  var maxElement = Math.max(...arr);
+  return maxElement;
+};
+
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, cloudParams.X_POSITION + cloudParams.SHADOW_GAP, cloudParams.Y_POSITION + cloudParams.SHADOW_GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, cloudParams.X_POSITION, cloudParams.Y_POSITION, '#fff');
@@ -28,7 +33,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', cloudParams.X_POSITION + chartParams.COLUMN_GAP, cloudParams.Y_POSITION + chartParams.COLUMN_GAP / 2);
   ctx.fillText('Cписок результатов:', cloudParams.X_POSITION + chartParams.COLUMN_GAP, cloudParams.Y_POSITION + chartParams.COLUMN_GAP);
 
-  var maxTime = Math.max(...times);
+  var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
     var saturationPersntage = Math.floor(Math.random() * 100);
@@ -43,8 +48,12 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillRect(cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * i, cloudParams.HEIGHT - cloudParams.Y_POSITION * 3, chartParams.COLUMN_WIDTH, -((chartParams.COLUMN_HEIGHT * times[i]) / maxTime));
   }
 
-  for (var j = 0; j < times.length; j++) {
-    ctx.fillStyle = '#000';
+  var renderResults = function (ctx, color, times, j) {
+    ctx.fillStyle = color;
     ctx.fillText(Math.floor(times[j]), cloudParams.X_POSITION + chartParams.COLUMN_GAP + (chartParams.COLUMN_GAP + chartParams.COLUMN_WIDTH) * j, cloudParams.HEIGHT - ((chartParams.COLUMN_HEIGHT * times[j]) / maxTime) - cloudParams.Y_POSITION * 4);
+  };
+
+  for (var j = 0; j < times.length; j++) {
+    renderResults(ctx, '#000', times, j);
   }
 };
