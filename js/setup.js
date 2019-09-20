@@ -50,9 +50,9 @@ var renderWizard = function (wizard) {
 var generateWizardsList = function (wizardsGeneratedData) {
   var fragment = document.createDocumentFragment();
 
-  wizardsGeneratedData.forEach(function(el) {
+  wizardsGeneratedData.forEach(function (el) {
     fragment.appendChild(renderWizard(el));
-  })
+  });
 
   wizardsList.appendChild(fragment);
 };
