@@ -7,24 +7,34 @@ var WIZARDS = {
   eyesColor: ['black', 'red', 'blue', 'yellow', 'green']
 };
 
-var generatedWizards = [];
+var lengthOfGeneratedArray = 4;
+
 var wizardsList = document.querySelector('.setup-similar-list');
 var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 document.querySelector('.setup').classList.remove('hidden');
 document.querySelector('.setup-similar').classList.remove('hidden');
 
-var generateWizards = function (wizardsData) {
-  while (generatedWizards.length < 4) {
-    var newWizard = {};
-    var wizardFirstName = wizardsData.names[Math.round(Math.random() * (wizardsData.names.length - 1))];
-    var wizardLastName = wizardsData.lastNames[Math.round(Math.random() * (wizardsData.lastNames.length - 1))];
-    newWizard.name = wizardFirstName + ' ' + wizardLastName;
-    newWizard.coatColor = wizardsData.coatColor[Math.round(Math.random() * (wizardsData.coatColor.length - 1))];
-    newWizard.eyesColor = wizardsData.eyesColor[Math.round(Math.random() * (wizardsData.eyesColor.length - 1))];
+var generateOneWizard = function (wizardsData) {
+  var newWizard = {};
 
-    generatedWizards.push(newWizard);
+  var wizardFirstName = wizardsData.names[Math.round(Math.random() * (wizardsData.names.length - 1))];
+  var wizardLastName = wizardsData.lastNames[Math.round(Math.random() * (wizardsData.lastNames.length - 1))];
+  newWizard.name = wizardFirstName + ' ' + wizardLastName;
+  newWizard.coatColor = wizardsData.coatColor[Math.round(Math.random() * (wizardsData.coatColor.length - 1))];
+  newWizard.eyesColor = wizardsData.eyesColor[Math.round(Math.random() * (wizardsData.eyesColor.length - 1))];
+
+  return newWizard;
+};
+
+var generateWizards = function () {
+  var generatedWizards = [];
+
+  while (generatedWizards.length < lengthOfGeneratedArray) {
+    generatedWizards.push(generateOneWizard(WIZARDS));
   }
+
+  return generatedWizards;
 };
 
 var renderWizard = function (wizard) {
@@ -40,12 +50,11 @@ var renderWizard = function (wizard) {
 var generateWizardsList = function (wizardsGeneratedData) {
   var fragment = document.createDocumentFragment();
 
-  for (var i = 0; i < wizardsGeneratedData.length; i++) {
-    fragment.appendChild(renderWizard(wizardsGeneratedData[i]));
-  }
+  wizardsGeneratedData.forEach(function(el) {
+    fragment.appendChild(renderWizard(el));
+  })
 
   wizardsList.appendChild(fragment);
 };
 
-generateWizards(WIZARDS);
-generateWizardsList(generatedWizards);
+generateWizardsList(generateWizards());
