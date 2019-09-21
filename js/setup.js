@@ -7,30 +7,27 @@ var WIZARDS = {
   eyesColor: ['black', 'red', 'blue', 'yellow', 'green']
 };
 
-var lengthOfGeneratedArray = 4;
+var LENGTH_OF_GENERATED_ARRAY = 4;
 
 var wizardsList = document.querySelector('.setup-similar-list');
 var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
-document.querySelector('.setup').classList.remove('hidden');
-document.querySelector('.setup-similar').classList.remove('hidden');
-
 var generateOneWizard = function (wizardsData) {
-  var newWizard = {};
-
   var wizardFirstName = wizardsData.names[Math.round(Math.random() * (wizardsData.names.length - 1))];
   var wizardLastName = wizardsData.lastNames[Math.round(Math.random() * (wizardsData.lastNames.length - 1))];
-  newWizard.name = wizardFirstName + ' ' + wizardLastName;
-  newWizard.coatColor = wizardsData.coatColor[Math.round(Math.random() * (wizardsData.coatColor.length - 1))];
-  newWizard.eyesColor = wizardsData.eyesColor[Math.round(Math.random() * (wizardsData.eyesColor.length - 1))];
 
-  return newWizard;
+  return {
+    name: wizardFirstName + ' ' + wizardLastName,
+    coatColor: wizardsData.coatColor[Math.round(Math.random() * (wizardsData.coatColor.length - 1))],
+    eyesColor: wizardsData.eyesColor[Math.round(Math.random() * (wizardsData.eyesColor.length - 1))]
+  };
 };
+
 
 var generateWizards = function () {
   var generatedWizards = [];
 
-  while (generatedWizards.length < lengthOfGeneratedArray) {
+  while (generatedWizards.length < LENGTH_OF_GENERATED_ARRAY) {
     generatedWizards.push(generateOneWizard(WIZARDS));
   }
 
@@ -58,3 +55,6 @@ var generateWizardsList = function (wizardsGeneratedData) {
 };
 
 generateWizardsList(generateWizards());
+
+document.querySelector('.setup').classList.remove('hidden');
+document.querySelector('.setup-similar').classList.remove('hidden');
