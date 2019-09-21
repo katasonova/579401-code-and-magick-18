@@ -27,7 +27,6 @@ var generateOneWizard = function (wizardsData) {
   };
 };
 
-
 var generateWizards = function () {
   var generatedWizards = [];
 
