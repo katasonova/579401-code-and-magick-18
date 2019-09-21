@@ -51,8 +51,8 @@ var renderWizard = function (wizard) {
 var generateWizardsList = function (wizardsGeneratedData) {
   var fragment = document.createDocumentFragment();
 
-  wizardsGeneratedData.forEach(function (el) {
-    fragment.appendChild(renderWizard(el));
+  wizardsGeneratedData.forEach(function (wizard) {
+    fragment.appendChild(renderWizard(wizard));
   });
 
   wizardsList.appendChild(fragment);
