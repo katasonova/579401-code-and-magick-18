@@ -12,14 +12,18 @@ var LENGTH_OF_GENERATED_ARRAY = 4;
 var wizardsList = document.querySelector('.setup-similar-list');
 var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
+var getRandomArrayElement = function (array) {
+  return Math.round(Math.random() * (array.length - 1));
+};
+
 var generateOneWizard = function (wizardsData) {
-  var wizardFirstName = wizardsData.names[Math.round(Math.random() * (wizardsData.names.length - 1))];
-  var wizardLastName = wizardsData.lastNames[Math.round(Math.random() * (wizardsData.lastNames.length - 1))];
+  var wizardFirstName = wizardsData.names[getRandomArrayElement(wizardsData.names)];
+  var wizardLastName = wizardsData.lastNames[getRandomArrayElement(wizardsData.lastNames)];
 
   return {
     name: wizardFirstName + ' ' + wizardLastName,
-    coatColor: wizardsData.coatColor[Math.round(Math.random() * (wizardsData.coatColor.length - 1))],
-    eyesColor: wizardsData.eyesColor[Math.round(Math.random() * (wizardsData.eyesColor.length - 1))]
+    coatColor: wizardsData.coatColor[getRandomArrayElement(wizardsData.coatColor)],
+    eyesColor: wizardsData.eyesColor[getRandomArrayElement(wizardsData.eyesColor)]
   };
 };
 
