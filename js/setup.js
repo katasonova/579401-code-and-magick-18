@@ -18,8 +18,6 @@ var dialogWindow = document.querySelector('.setup');
 var openDialogWindow = document.querySelector('.setup-open');
 var closeDialogWindow = dialogWindow.querySelector('.setup-close');
 var dialogWindowInput = dialogWindow.querySelector('.setup-user-name');
-var dialogWindowSubmitButton = dialogWindow.querySelector('.setup-submit');
-var dialofWindowForm = dialogWindow.querySelector('.setup-wizard-form');
 var wizardCoat = dialogWindow.querySelector('.wizard-coat');
 var wizardEyes = dialogWindow.querySelector('.wizard-eyes');
 var fireball = dialogWindow.querySelector('.setup-fireball-wrap');
@@ -69,12 +67,6 @@ var generateWizardsList = function (wizardsGeneratedData) {
   wizardsList.appendChild(fragment);
 };
 
-var setNewElementColor = function (array, insert) {
-  var eyeColor = WIZARDS.eyesColor[getRandomArrayElement(WIZARDS.eyesColor)];;
-  wizardEyes.style.fill = eyeColor;
-  dialogWindow.querySelector('input[name="eyes-color"]').value = eyeColor;
-};
-
 
 var showPopup = function () {
   dialogWindow.classList.remove('hidden');
@@ -94,7 +86,7 @@ openDialogWindow.addEventListener('keydown', function (evt) {
   }
 });
 
-document.addEventListener('keydown', function(evt) {
+document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ESC_KEYCODE && !(dialogWindowInput === document.activeElement)) {
     closePopup();
   }
@@ -113,7 +105,7 @@ closeDialogWindow.addEventListener('keydown', function (evt) {
 
 dialogWindowInput.addEventListener('invalid', function () {
   if (dialogWindowInput.validity.tooShort) {
-    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+    dialogWindowInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
   } else if (dialogWindowInput.validity.tooLong) {
     dialogWindowInput.setCustomValidity('Имя не должно превышать 25-ти символов');
   } else if (dialogWindowInput.validity.valueMissing) {
@@ -139,7 +131,7 @@ wizardCoat.addEventListener('click', function () {
 });
 
 wizardEyes.addEventListener('click', function () {
-  var eyeColor = WIZARDS.eyesColor[getRandomArrayElement(WIZARDS.eyesColor)];;
+  var eyeColor = WIZARDS.eyesColor[getRandomArrayElement(WIZARDS.eyesColor)];
   wizardEyes.style.fill = eyeColor;
   dialogWindow.querySelector('input[name="eyes-color"]').value = eyeColor;
 });
