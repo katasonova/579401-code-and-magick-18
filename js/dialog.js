@@ -11,6 +11,7 @@
   var wizardCoat = dialogWindow.querySelector('.wizard-coat');
   var wizardEyes = dialogWindow.querySelector('.wizard-eyes');
   var fireball = dialogWindow.querySelector('.setup-fireball-wrap');
+  var dialogImg = dialogWindow.querySelector('.upload');
 
   var imgClickHandler = function () {
     dialogWindow.classList.remove('hidden');
@@ -78,5 +79,52 @@
     } else {
       target.setCustomValidity('');
     }
+  });
+
+  dialogImg.addEventListener('mousedown', function (evt) {
+    evt.preventDefault();
+
+    var startCoords = {
+      x: evt.clientX,
+      y: evt.clientY
+    };
+
+    var dragged = false;
+
+    var imgMouseMoveHandler = function (moveEvt) {
+      moveEvt.preventDefault();
+      dragged = true;
+
+      var shift = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY
+      };
+
+      startCoords = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
+
+      dialogWindow.style.top = (dialogWindow.offsetTop - shift.y) + 'px';
+      dialogWindow.style.left = (dialogWindow.offsetLeft - shift.x) + 'px';
+    };
+
+    var imgMouseUpHandler = function (upEvt) {
+      upEvt.preventDefault();
+
+      document.removeEventListener('mousemove', imgMouseMoveHandler);
+      document.removeEventListener('mouseup', imgMouseUpHandler);
+
+      if (dragged) {
+        var imgClickPreventDefaultHandler = function (evtClick) {
+          evtClick.preventDefault();
+          dialogImg.removeEventListener('click', imgClickPreventDefaultHandler);
+        };
+        dialogImg.addEventListener('click', imgClickPreventDefaultHandler);
+      }
+    };
+
+    document.addEventListener('mousemove', imgMouseMoveHandler);
+    document.addEventListener('mouseup', imgMouseUpHandler);
   });
 })();
