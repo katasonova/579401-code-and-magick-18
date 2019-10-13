@@ -18,6 +18,12 @@
     wizardCoat.addEventListener('click', svgCoatColorClickHandler);
     wizardEyes.addEventListener('click', svgEyesColorClickHandler);
     fireball.addEventListener('click', divFireballClickHandler);
+
+    document.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === ESC_KEYCODE && !(dialogWindowInput === document.activeElement)) {
+        closeButtonClickHandler();
+      }
+    });
   };
 
   var closeButtonClickHandler = function () {
@@ -45,7 +51,6 @@
     fireball.querySelector('input').value = newColor;
   };
 
-  openDialogWindow.addEventListener('click', imgClickHandler);
 
   document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
@@ -53,11 +58,7 @@
     }
   });
 
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && !(dialogWindowInput === document.activeElement)) {
-      closeButtonClickHandler();
-    }
-  });
+  openDialogWindow.addEventListener('click', imgClickHandler);
   closeDialogWindow.addEventListener('click', closeButtonClickHandler);
 
   dialogWindowInput.addEventListener('invalid', function () {
