@@ -12,6 +12,7 @@
   var wizardEyes = dialogWindow.querySelector('.wizard-eyes');
   var fireball = dialogWindow.querySelector('.setup-fireball-wrap');
   var dialogImg = dialogWindow.querySelector('.upload');
+  var dialogForm = dialogWindow.querySelector('.setup-wizard-form');
 
   var imgClickHandler = function () {
     dialogWindow.classList.remove('hidden');
@@ -50,7 +51,6 @@
     fireball.style.backgroundColor = newColor;
     fireball.querySelector('input').value = newColor;
   };
-
 
   document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
@@ -127,5 +127,14 @@
 
     document.addEventListener('mousemove', imgMouseMoveHandler);
     document.addEventListener('mouseup', imgMouseUpHandler);
+  });
+
+  var successHandler = function () {
+    dialogWindow.classList.add('hidden');
+  };
+
+  dialogForm.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(dialogForm), successHandler, window.setup.errorHandler);
+    evt.preventDefault();
   });
 })();
