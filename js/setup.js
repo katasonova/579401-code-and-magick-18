@@ -13,27 +13,6 @@
   var wizardsList = document.querySelector('.setup-similar-list');
   var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
-  var generateOneWizard = function (wizardsData) {
-    var wizardFirstName = wizardsData.names[window.util.getRandomArrayElement(wizardsData.names)];
-    var wizardLastName = wizardsData.lastNames[window.util.getRandomArrayElement(wizardsData.lastNames)];
-
-    return {
-      name: wizardFirstName + ' ' + wizardLastName,
-      coatColor: wizardsData.coatColor[window.util.getRandomArrayElement(wizardsData.coatColor)],
-      eyesColor: wizardsData.eyesColor[window.util.getRandomArrayElement(wizardsData.eyesColor)]
-    };
-  };
-
-  var generateWizards = function () {
-    var generatedWizards = [];
-
-    while (generatedWizards.length < LENGTH_OF_GENERATED_ARRAY) {
-      generatedWizards.push(generateOneWizard(window.WIZARDS));
-    }
-
-    return generatedWizards;
-  };
-
   var renderWizard = function (wizard) {
     var wizardElement = wizardTemplate.cloneNode(true);
 
@@ -44,17 +23,35 @@
     return wizardElement;
   };
 
-  var generateWizardsList = function (wizardsGeneratedData) {
+  var successHandler = function (wizards) {
+    var dialogWindow = document.querySelector('.setup');
     var fragment = document.createDocumentFragment();
 
-    wizardsGeneratedData.forEach(function (wizard) {
-      fragment.appendChild(renderWizard(wizard));
-    });
-
+    for (var i = 0; i < LENGTH_OF_GENERATED_ARRAY; i++) {
+      fragment.appendChild(renderWizard(wizards[i]));
+    }
     wizardsList.appendChild(fragment);
+
+    dialogWindow.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  generateWizardsList(generateWizards());
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  window.backend.load(successHandler, errorHandler);
 
   document.querySelector('.setup-similar').classList.remove('hidden');
+
+  window.setup = {
+    errorHandler: errorHandler
+  };
 })();
