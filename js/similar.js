@@ -22,12 +22,12 @@
     'purple'
   ]
   };
-  var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+  // var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
   var dialogWindow = document.querySelector('.setup');
   var wizardCoat = dialogWindow.querySelector('.wizard-coat');
   var wizardEyes = dialogWindow.querySelector('.wizard-eyes');
   var fireball = dialogWindow.querySelector('.setup-fireball-wrap');
-  var allWizards = [];
+  var allWizards;
   var newCoatColor;
   var newEyesColor;
   var newFireballColor;
@@ -46,27 +46,30 @@
   //   return wizardElement;
   // };
   var updateWizards = function () {
-    var sameCoatWizards = allWizards.filter(function(element) {
-      return element.coatColor === newCoatColor;
+    var sameCoatWizards = allWizards.filter(function (element) {
+      return element.colorCoat === newCoatColor;
     });
 
-    console.log('filtered array' + sameCoatWizards);
-    console.log('server data' + allWizards)
+    // console.log('filtered array' + sameCoatWizards);
+    // console.log('server data' + allWizards)
 
     window.render.renderSimilarWizads(sameCoatWizards);
   }
 
   var svgCoatColorClickHandler = function () {
-    var coatColor = window.WIZARDS.coatColor[window.util.getRandomArrayElement(window.WIZARDS.coatColor)];
+    //var coatColor = window.WIZARDS.coatColor[window.util.getRandomArrayElement(window.WIZARDS.coatColor)];
+    //var coatColor = allWizards.colorCoat;
+    var coatColor = allWizards[window.util.getRandomArrayElement(allWizards)].colorCoat;
     wizardCoat.style.fill = coatColor;
     dialogWindow.querySelector('input[name="coat-color"]').value = coatColor;
     newCoatColor = coatColor;
     updateWizards();
-    console.log('new color' + newCoatColor)
+    //console.log('new color' + newCoatColor)
   };
 
   var svgEyesColorClickHandler = function () {
     var eyeColor = window.WIZARDS.eyesColor[window.util.getRandomArrayElement(window.WIZARDS.eyesColor)];
+    //var eyeColor = allWizards.colorEyes;
     wizardEyes.style.fill = eyeColor;
     dialogWindow.querySelector('input[name="eyes-color"]').value = eyeColor;
     newEyesColor = eyeColor;
@@ -75,6 +78,7 @@
 
   var divFireballClickHandler = function () {
     var newColor = FIREBALL_COLOR[window.util.getRandomArrayElement(FIREBALL_COLOR)];
+    //var newColor = allWizards.colorFireball;
     fireball.style.backgroundColor = newColor;
     fireball.querySelector('input').value = newColor;
     newFireballColor = newColor;
