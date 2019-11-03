@@ -1,27 +1,16 @@
 'use strict';
 
 (function () {
-  // var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
   var dialogWindow = document.querySelector('.setup');
   var openDialogWindow = document.querySelector('.setup-open');
   var closeDialogWindow = dialogWindow.querySelector('.setup-close');
   var dialogWindowInput = dialogWindow.querySelector('.setup-user-name');
-  // var wizardCoat = dialogWindow.querySelector('.wizard-coat');
-  // var wizardEyes = dialogWindow.querySelector('.wizard-eyes');
-  // var fireball = dialogWindow.querySelector('.setup-fireball-wrap');
   var dialogImg = dialogWindow.querySelector('.upload');
   var dialogForm = dialogWindow.querySelector('.setup-wizard-form');
-  // var newCoatColor;
-  // var newEyesColor;
-  // var newFireballColor;
 
   var imgClickHandler = function () {
-    // dialogWindow.classList.remove('hidden');
-    // wizardCoat.addEventListener('click', svgCoatColorClickHandler);
-    // wizardEyes.addEventListener('click', svgEyesColorClickHandler);
-    // fireball.addEventListener('click', divFireballClickHandler);
     window.similar.openDialogWindowClickHandler();
 
     document.addEventListener('keydown', function (evt) {
@@ -34,27 +23,6 @@
   var closeButtonClickHandler = function () {
     window.similar.closeButtonClickHandler();
   };
-
-  // var svgCoatColorClickHandler = function () {
-  //   var coatColor = window.WIZARDS.coatColor[window.util.getRandomArrayElement(window.WIZARDS.coatColor)];
-  //   wizardCoat.style.fill = coatColor;
-  //   dialogWindow.querySelector('input[name="coat-color"]').value = coatColor;
-  //   newCoatColor = coatColor;
-  // };
-
-  // var svgEyesColorClickHandler = function () {
-  //   var eyeColor = window.WIZARDS.eyesColor[window.util.getRandomArrayElement(window.WIZARDS.eyesColor)];
-  //   wizardEyes.style.fill = eyeColor;
-  //   dialogWindow.querySelector('input[name="eyes-color"]').value = eyeColor;
-  //   newEyesColor = eyeColor;
-  // };
-
-  // var divFireballClickHandler = function () {
-  //   var newColor = FIREBALL_COLOR[window.util.getRandomArrayElement(FIREBALL_COLOR)];
-  //   fireball.style.backgroundColor = newColor;
-  //   fireball.querySelector('input').value = newColor;
-  //   newFireballColor = newColor;
-  // };
 
   document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
