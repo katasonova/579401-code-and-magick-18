@@ -32,7 +32,7 @@
     dialogWindow.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  window.render = {
+  window.wizard = {
     renderSimilarWizads: renderSimilarWizads
   };
 })();

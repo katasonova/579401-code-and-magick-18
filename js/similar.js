@@ -33,7 +33,7 @@
 
   var updateWizards = function () {
 
-    window.render.renderSimilarWizads(allWizards.sort(function (left, right) {
+    window.wizard.renderSimilarWizads(allWizards.sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
       if (rankDiff === 0) {
         rankDiff = rankNames(left.name, right.name);
